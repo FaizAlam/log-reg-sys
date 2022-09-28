@@ -23,7 +23,7 @@ app.use(session({
 }))
 
 
-mainURL = "https://log-reg-sys.herokuapp.com/"
+mainURL = "https://log-reg-sys.herokuapp.com"
 
 //Database
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true,useUnifiedTopology:true})
