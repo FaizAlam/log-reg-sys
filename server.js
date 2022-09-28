@@ -10,7 +10,6 @@ const bcrypt = require("bcrypt");
 const user = require('./models/user')
 const nodemailer = require("nodemailer")
 const {google} = require("googleapis")
-const credentials = require('./credentials.json');
 
 const app = express()
 const port = 5000
@@ -24,7 +23,7 @@ app.use(session({
 }))
 
 
-mainURL = "http://localhost:5000"
+mainURL = "https://log-reg-sys.herokuapp.com/"
 
 //Database
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true,useUnifiedTopology:true})
@@ -49,8 +48,10 @@ const nodemailerObject = {
 */
 // setup mail oauth
 
-const {client_secret, client_id, redirect_uris}= credentials.web;
-const oAuth2Client = new google.auth.OAuth2(client_id,client_secret,redirect_uris[0]);
+const client_secret = process.env.client_secret
+const client_id = process.env.client_id
+const redirect_uris = process.env.redirect_uris
+const oAuth2Client = new google.auth.OAuth2(client_id,client_secret,redirect_uris);
 oAuth2Client.setCredentials({refresh_token:process.env.Refresh_token})
 
 
